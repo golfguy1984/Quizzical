@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 function Quiz({questions}) {  
     
+    const [randomAnswers, setRandomAnswers] = React.useState([])
+    const [shuffledArray, setShuffledArray] = React.useState([])
     const [formData, setFormData] = React.useState(
         {
            answers0: '',
@@ -17,39 +19,69 @@ function Quiz({questions}) {
         }
     )
 
-    console.log(formData.answers0)
+   
+
     
-    function handleChange(event) {
-        setFormData(prev => {
-            return {
-                
-                answers0: event.target.value
-            }
-        })
+    function handleChange(event) {  
     }
+
+    // useEffect(() => {
+    //     const tmpMarkets = markets.map((item) => ({
+    //        id: item,
+    //        isActiveMarket: true,
+    //        brandName
+    //     });
+    //     setActiveMarket(tmpMarkets);
+    //  }, []);
+
+
+
+    React.useEffect(() => {
+      let test = []
+      questions.map((question) => {
+        randomAnswers.push(question.correct_answer)
+        randomAnswers.push(question.incorrect_answers[0])
+        randomAnswers.push(question.incorrect_answers[1])
+        randomAnswers.push(question.incorrect_answers[2])
+      })
+
+      function shuffleArray(array) {
+        let copy = [...array]
+        for (let i = array.length -1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1 ));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+    }
+
+    let testTwo = shuffleArray(test)  
+      setShuffledArray(testTwo) 
+      setRandomAnswers(test)
+      console.log(shuffledArray)
+    }, [])
     
     
     let fiveQuestions = questions.map((question, index) => {
         
         // stores answers in array
-        let randomAnswersArray = []
-        randomAnswersArray.push(question.correct_answer)
-        randomAnswersArray.push(question.incorrect_answers[0])
-        randomAnswersArray.push(question.incorrect_answers[1])
-        randomAnswersArray.push(question.incorrect_answers[2])
+        // let randomAnswersArray = []
+        // randomAnswersArray.push(question.correct_answer)
+        // randomAnswersArray.push(question.incorrect_answers[0])
+        // randomAnswersArray.push(question.incorrect_answers[1])
+        // randomAnswersArray.push(question.incorrect_answers[2])
         
-        console.log(randomAnswersArray[0] === formData.answers0)
         
-        function shuffleArray(array) {
-            let copy = [...array]
-            for (let i = array.length -1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1 ));
-                [copy[i], copy[j]] = [copy[j], copy[i]];
-            }
-            return copy;
-        }
+        
+        // function shuffleArray(array) {
+        //     let copy = [...array]
+        //     for (let i = array.length -1; i > 0; i--) {
+        //         const j = Math.floor(Math.random() * (i + 1 ));
+        //         [copy[i], copy[j]] = [copy[j], copy[i]];
+        //     }
+        //     return copy;
+        // }
 
-        let shuffledArray = shuffleArray(randomAnswersArray)
+        // let shuffledArray = shuffleArray(randomAnswers)
         // console.log(randomAnswersArray)
 
 
