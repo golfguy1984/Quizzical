@@ -2,11 +2,22 @@ import React from 'react'
 import {decode} from 'html-entities'
 import { v4 as uuidv4 } from 'uuid';
 
+/*
+passing in the array of question objects from the App componenet
+map through each question and pull out the answers and store them
+map through each question and pull out the question and store it
+shuffle the answers you stored into a global variable
+map through questions again and use the global variables to update the data in the html
 
+*/
 
 
 function Quiz({questions}) {  
-    
+
+    const [answersArray, setAnswersArray] = React.useState([])
+    const [question, setQuestions] = React.useState([])
+
+    const [shuffledArray, setShuffledArray] = React.useState([])
     const [formData, setFormData] = React.useState(
         {
            answers0: '',
@@ -17,7 +28,6 @@ function Quiz({questions}) {
         }
     )
 
-    console.log(formData.answers0)
     
     function handleChange(event) {
         setFormData(prev => {
@@ -30,7 +40,9 @@ function Quiz({questions}) {
     
     
     let fiveQuestions = questions.map((question, index) => {
-        
+        //
+
+
         // stores answers in array
         let randomAnswersArray = []
         randomAnswersArray.push(question.correct_answer)
@@ -38,7 +50,7 @@ function Quiz({questions}) {
         randomAnswersArray.push(question.incorrect_answers[1])
         randomAnswersArray.push(question.incorrect_answers[2])
         
-        console.log(randomAnswersArray[0] === formData.answers0)
+        
         
         function shuffleArray(array) {
             let copy = [...array]
@@ -49,7 +61,19 @@ function Quiz({questions}) {
             return copy;
         }
 
-        let shuffledArray = shuffleArray(randomAnswersArray)
+        
+
+        //this gets re rendered and updates the html below figure out how to move into useEffect
+        // const [shuffledArray, setShuffledArray] = React.useState([])
+        // React.useEffect(() => {
+        //      setShuffledArray(shuffleArray(randomAnswersArray))
+        // })
+
+        React.useEffect(() => {
+             setShuffledArray(shuffleArray(randomAnswersArray))
+        }, [])
+
+        // let shuffledArray = shuffleArray(randomAnswersArray)
         // console.log(randomAnswersArray)
 
 
@@ -111,6 +135,8 @@ function Quiz({questions}) {
             )
             
 })  
+
+
 
 
   return (
