@@ -25,7 +25,6 @@ async function getQuestions() {
 
 
 
-
   return (
     <div className="m-auto flex flex-col justify-center items-center w-[750px] h-[750px] bg-[#F5F7FB]">
       {start ? "" : <Start 
