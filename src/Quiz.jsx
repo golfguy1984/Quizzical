@@ -14,6 +14,43 @@ map through questions again and use the global variables to update the data in t
 
 function Quiz({questions}) {  
 
+
+    // this gets me an array of objects that has all the info i need but now i need to randomize the order of the answers
+    let testArray = []
+        questions.map(question => {
+        testArray.push(
+            {
+                "question": question.question,
+                "answers": [question.correct_answer, 
+                            question.incorrect_answers[0], 
+                            question.incorrect_answers[1], 
+                            question.incorrect_answers[2]]
+                
+            })
+ })
+
+ function shuffleArray(array) {
+    let copy = [...array]
+    for (let i = array.length -1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1 ));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+}
+
+//  let testShuffle = (shuffleArray(testArray[0].answers))
+
+           let testShuffle = testArray.map(question => ({
+           ...question,
+           answers: question.answers.sort(() => 0.5 - Math.random())
+ }))
+
+// can you now map over test array and  return the array but run the answers through shuffle and then update the answers?
+
+
+
+
+
     const [answersArray, setAnswersArray] = React.useState([])
     const [question, setQuestions] = React.useState([])
 

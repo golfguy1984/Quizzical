@@ -2,6 +2,8 @@ import React from "react"
 import { useState } from 'react'
 import Start from "./Start"
 import Quiz from "./Quiz"
+import Quiz2 from "./Quiz2"
+import Quiz3 from "./Quiz3"
 
 
 function App() {
@@ -33,7 +35,7 @@ async function getQuestions() {
                       />}
       {start && 
                 <>
-                  <Quiz 
+                  <Quiz3 
                       questions={questions} 
                       />
                 </>
