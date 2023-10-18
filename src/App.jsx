@@ -4,6 +4,8 @@ import Start from "./Start"
 import Quiz from "./Quiz"
 import Quiz2 from "./Quiz2"
 import Quiz3 from "./Quiz3"
+import Quiz4 from "./Quiz4"
+import Quiz5 from "./Quiz5"
 
 
 function App() {
@@ -21,7 +23,7 @@ async function getQuestions() {
   let res = await fetch('https://opentdb.com/api.php?amount=5&category=21&type=multiple')
   let data = await res.json()
     setQuestions(data.results)
-    setStart(!start)
+    setStart(true)
     
 }
 
@@ -35,8 +37,9 @@ async function getQuestions() {
                       />}
       {start && 
                 <>
-                  <Quiz3 
-                      questions={questions} 
+                  <Quiz5 
+                      questions={questions}
+                      getQuestions={getQuestions} 
                       />
                 </>
                     }

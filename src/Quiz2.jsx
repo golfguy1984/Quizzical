@@ -33,7 +33,7 @@ React.useEffect(() => {
 
     function handleChange(event) {
         // track the answer selected
-       
+       console.log(event.target.id)
     }
 
 

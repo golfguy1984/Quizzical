@@ -31,46 +31,12 @@ React.useEffect(() => {
     }
 
 
+    const [checked, setChecked] = React.useState(false)
+
     function handleChange(event) {
-        // track the answer selected
-        // const {name, value, type, checked} = event.target
-        // setFormData(prevFormData => {
-        //     return {
-        //         ...prevFormData,
-        //         [name]: type === "checkbox" ? checked : value
-        //     }
-        // })
-        
-        console.log(questionData[0].answers[0])
-       
+            console.log(questionData)
     }
 
-    const [formData, setFormData] = React.useState([
-       {
-            answer0: 'Screwdriver',
-            answer1: 'Hammer',
-            answer2: 'Drill',
-            answer3: 'Wrench'
-        },
-        {
-            answer0: 'something different',
-            answer1: '',
-            answer2: '',
-            answer3: ''
-            }
-    ])
-
-    /**
-     
-       const [formData, setFormData] = React.useState( {
-            question1: { answer0: '', answer1: '', answer2: '', answer3: ''}
-            question2: { answer0: '', answer1: '', answer2: '', answer3: ''}
-            question3: { answer0: '', answer1: '', answer2: '', answer3: ''}
-            question4: { answer0: '', answer1: '', answer2: '', answer3: ''}
-            question5: { answer0: '', answer1: '', answer2: '', answer3: ''}
-       })
-     
-     */
 
 
   return (
@@ -81,49 +47,50 @@ React.useEffect(() => {
             <h1 >{decode(item.question)}</h1>
             
                 <ul className='flex justify-around'>
-                    <li>
+                    <li className="radiobtn">
                         <input 
                             type='radio'
                             id={item.answers[0]}
                             name={`answers${i}`}
                             value={item.answers[0]}
-                            checked={formData[0].answer0 === item.answers[0]}
+                            
                             onChange={handleChange}
+                            
                         />
                         <label>{item.answers[0]}</label>
                     </li>
 
-                    <li>
+                    <li className="radiobtn">
                         <input 
                             type='radio'
                             id={item.answers[1]}
                             name={`answers${i}`}
                             value={item.answers[1]}
-                            checked={formData[0].answer1 === item.answers[1]}
+                            // checked={formData[0].answer1 === item.answers[1]}
                             onChange={handleChange}
                         />
                         <label>{item.answers[1]}</label>
                     </li>
 
-                    <li>
+                    <li className="radiobtn">
                         <input 
                             type='radio'
                             id={item.answers[2]}
                             name={`answers${i}`}
                             value={item.answers[2]}
-                            checked={formData[0].answer2 === item.answers[2]}
+                            // checked={formData[0].answer2 === item.answers[2]}
                             onChange={handleChange}
                         />
                         <label>{item.answers[2]}</label>
                     </li>
                
-                    <li>
+                    <li className="radiobtn">
                         <input 
                             type='radio'
                             id={item.answers[3]}
                             name={`answers${i}`}
                             value={item.answers[3]}
-                            checked={formData[0].answer3 === item.answers[3]}
+                            // checked={formData[0].answer3 === item.answers[3]}
                             onChange={handleChange}
                         />
                         <label>{item.answers[3]}</label>
