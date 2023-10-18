@@ -44,7 +44,7 @@ React.useEffect(() => {
         let allBoxes = document.querySelectorAll('input[type = radio]')
         
         allBoxes.forEach(function(box, index) {
-            box.labels[0].style.opacity = ".5";
+            box.labels[0].style.opacity = ".3";
         })
 
         checkedBoxes.forEach(function(checkbox, index) {
